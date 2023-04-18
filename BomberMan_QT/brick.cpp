@@ -1,5 +1,4 @@
 #include "brick.h"
-
 Brick::Brick()
 {
 
@@ -17,7 +16,6 @@ void Brick::drawBrick() {
         cout <<"H";
     }
 }
-
 // Kiểm tra tại vị trí x, y có phải là Brick hay không
 bool Brick::isBrick(int xWall, int yWall) {
     for(int i =0; i < 30; i++) {

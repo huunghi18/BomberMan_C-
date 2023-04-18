@@ -2,7 +2,6 @@
 
 Monster::Monster()
 {
-
 }
 // Tạo Monster
 void Monster::drawMonster() {

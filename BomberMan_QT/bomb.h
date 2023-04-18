@@ -16,7 +16,6 @@ private:
     int m_x;
     int m_y;
     Wall m_wB;
-    time_t now;
 public:
     Bomb();
     void createBomb();

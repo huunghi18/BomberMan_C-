@@ -35,6 +35,7 @@ public:
     void calculateMove();
     void putBomb();
     void printHealth();
+    void gameOver();
 };
 
 #endif // PLAYER_H

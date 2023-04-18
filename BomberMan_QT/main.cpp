@@ -6,7 +6,6 @@
 #include "brick.h"
 #include "monster.h"
 using namespace std;
-
 int main()
 {
     gotoXY(1,20);

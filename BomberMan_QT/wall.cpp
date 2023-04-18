@@ -3,7 +3,7 @@
 Wall::Wall()
 {
 }
-// create Wall
+// create Wall hình dấu +
 void Wall::drawWall() {
     for (int x = 1; x <= CONSOLE_WIDTH; x++) {
         gotoXY(x, 1);

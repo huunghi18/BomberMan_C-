@@ -1,5 +1,6 @@
 #include "player.h"
-void gameOver() {
+
+void Player::gameOver() {
     gotoXY(50,17);
     cout << "---GAME OVER--- \t";
     exit(0);
@@ -12,6 +13,7 @@ Player::Player()
     xPre = x;
     yPre = y;
     timeStart = time(0);
+    timeEnd = time(0);
 }
 // set các đối tượng trong Player để check
 Player::Player(Brick &br, Wall &w, Monster &m)
@@ -32,11 +34,11 @@ Player::Player(Brick &br, Wall &w, Monster &m)
  */
 void Player::moveUp() {
 
-    if(!w.isWall(x,y-1) && !br.isBrick(x,y-1)) {
+    if(!w.isWall(x,y-1) && !br.isBrick(x,y-1)) {    // Không được đi qua Wall và Brick
         y--;
         gotoXY(xPre, yPre);
         cout << " ";
-        if(m.isMonster(x,y)) {
+        if(m.isMonster(x,y)) {                      // chạm vào Monster thì gameOver
             gameOver();
         }
     }
@@ -77,15 +79,15 @@ void Player::moveLeft() {
 // Đặt bom
 void Player::putBomb() {
     b.setXY(x,y);
-    time_t timeEnd = time(0);
+    timeEnd = time(0);
     c = _getch();
     if( c == 72) {
         gotoXY(b.getX(),b.getY());
         cout << "0";
-        while(timeEnd - timeStart < 4) {
+        while(timeEnd - timeStart < 4) { // khi nào time >= 4 thì bom nổ
             timeEnd = time(0);
         }
-        timeStart = timeEnd;
+        timeStart = timeEnd; // set lại time sau khi bom nổ
         b.kickBomb(x, y, br, m);
         y--;
     }
@@ -132,20 +134,20 @@ void Player::calculateMove() {
     yPre = y;
     char c;
     if(_kbhit()) {                  // ktra co nhap gia tri tu ban phim khong
-        c = _getch(); // đọc dữ liệu từ bộ nhớ đệm
-        if(c == -32)
+        c = _getch();       // đọc dữ liệu từ bộ nhớ đệm
+        if(c == -32)        // có tín hiệu từ phim mũi tên
         {
             c = _getch();
-            if( c == 72) {
+            if( c == 72) {   // nhấn phím mũi tên lên
                 moveUp();
             }
-            else if( c == 80) {
+            else if( c == 80) { // nhấn phím mũi tên xuống
                 moveDown();
             }
-            else if( c == 75) {
+            else if( c == 75) { // nhấn phím mũi tên qua trái
                 moveLeft();
             }
-            else if( c == 77) {
+            else if( c == 77) { // nhấn phím mũi tên qua phải
                 moveRight();
             }
         }
@@ -153,7 +155,7 @@ void Player::calculateMove() {
             c = _getch();
             if(c == -32)  // nếu nhấn phím cách
             {
-                putBomb();
+                putBomb(); // đặt bom
             }
         }
     }

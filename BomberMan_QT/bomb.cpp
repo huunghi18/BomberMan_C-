@@ -1,18 +1,18 @@
 #include "bomb.h"
-int score = 0; // tính điểm phá tường
+int score = 0;
 Bomb::Bomb()
 {
-    now = time(0);
 }
-// in điểm số
+// in điểm số phá tường + tiêu diệt quái
 void Bomb::printScore() {
     gotoXY(20,17);
     cout << "SCORE: ";
     gotoXY(28,17);
     cout << score;
 }
+// Nổ bom
 void Bomb::kickBomb(int x, int y, Brick& br, Monster& m) {
-    //hien dau X nhung noi bom no
+    //Hiện dấu X những vị trí bom nổ
     gotoXY(x,y);
     cout << "X";
     for(int i =0; i < 8; i++) {
@@ -103,7 +103,7 @@ void Bomb::kickBomb(int x, int y, Brick& br, Monster& m) {
         }
     }
     Sleep(500);
-    // xoa vung xung quanh bom
+    // Delete những vật thể xung quanh trái bom (trừ Wall)
     gotoXY(x,y);
     cout << " ";
     gotoXY(x-1,y);
