@@ -1,72 +1,49 @@
 #include "wall.h"
 
-wall::wall()
+Wall::Wall()
 {
 }
-void wall::drawWall() {
-    for (int x = 1; x <= 31; x++) {
+// create Wall
+void Wall::drawWall() {
+    for (int x = 1; x <= CONSOLE_WIDTH; x++) {
         gotoXY(x, 1);
         cout << "+" ;
-        gotoXY(x, 15);
+        gotoXY(x, CONSOLE_HEIGHT);
         cout << "+";
     }
-    for (int y = 1;y <= 15;y++) {
+    for (int y = 1;y <= CONSOLE_HEIGHT;y++) {
         gotoXY(1, y);
         cout << "+";
-        gotoXY(31,y);
+        gotoXY(CONSOLE_WIDTH,y);
         cout << "+";
     }
-    for (int x = 3; x <= 29; x+= 2) {
-        for(int y = 3; y <= 13; y+= 2) {
-        gotoXY(x, y);
-        cout << "+" ;
+    for (int x = 3; x <= CONSOLE_WIDTH - 2; x+= 2) {
+        for(int y = 3; y <= CONSOLE_HEIGHT -2; y+= 2) {
+            gotoXY(x, y);
+            cout << "+" ;
         }
     }
 }
-
-    bool wall::checkWall (int x, int y) {
-        if (y==1 && ( x >= 1 && x <=31)) {   // up wall
-            return true;
-        }
-        else if (y==15 && ( x >= 1 && x <=31)) {  // down wall
-           return true;
-        }
-        else if (x==1 && ( y >= 1 && y <=15)) {  // left wall
-           return true;
-        }
-        else if (x==31 && ( y >= 1 && y <=31)) {  // right wall
-           return true;
-        }
-        for (int x0 = 3; x0 <= 29; x0+= 2) {
-            for(int y0 = 3; y0 <= 13; y0+= 2) {
-                if(x == x0 && y == y0) {
-                    return true;
-                }
-            }
-        }
-        return false;
+// check tại x, y có phải Wall hay không
+bool Wall::isWall (int x, int y) {
+    if (y==1 && ( x >= 1 && x <=CONSOLE_WIDTH)) {   // up wall
+        return true;
     }
-    void wall::fakeWall() {
-        int xWall, yWall;
-        v.resize(10);
-        for(int i = 0; i < 10; i++) {
-        do {
-            xWall = rand()% 30 + 2;
-            yWall = rand()% 14 + 2;
-        }
-        while (checkWall(xWall, yWall));
-        v[i].resize(2);
-        v.at(i).at(1) = xWall;
-        v.at(i).at(2) = yWall;
-        gotoXY(xWall,yWall);
-        cout <<"H";
-        }
+    else if (y==CONSOLE_HEIGHT && ( x >= 1 && x <=CONSOLE_WIDTH)) {  // down wall
+        return true;
     }
-    bool wall::checkFakeWall(int x, int y) {
-        for(int i = 0; i < 10; i++)  {
-            if( (v.at(i).at(1) == x) && (v.at(i).at(2) == y)){
+    else if (x==1 && ( y >= 1 && y <=CONSOLE_HEIGHT)) {  // left wall
+        return true;
+    }
+    else if (x==CONSOLE_WIDTH && ( y >= 1 && y <=CONSOLE_HEIGHT)) {  // right wall
+        return true;
+    }
+    for (int x0 = 3; x0 <= 29; x0+= 2) {
+        for(int y0 = 3; y0 <= 13; y0+= 2) {
+            if(x == x0 && y == y0) {
                 return true;
             }
         }
-        return false;
     }
+    return false;
+}

@@ -1,3 +1,4 @@
+// thư viện hiển thị console
 #include <stdio.h>
 #include <conio.h>
 #include <Windows.h>

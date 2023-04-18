@@ -8,15 +8,16 @@
 #include <cstdlib>  // random
 using namespace std;
 
-class wall
-{
+#define CONSOLE_WIDTH 31
+#define CONSOLE_HEIGHT 15
 
-            vector<vector<int>> v;
+class Wall
+{
 public:
-    wall();
+
+    Wall();
     void drawWall();
-    void fakeWall();
-    bool checkWall(int, int);
-    bool checkFakeWall(int, int);
+    bool isWall(int, int);
+
 };
 #endif // WALL_H

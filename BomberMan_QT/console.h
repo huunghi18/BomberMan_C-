@@ -1,3 +1,4 @@
+// thư viện hiển thị console
 #ifndef CONSOLE_H
 #define CONSOLE_H
 

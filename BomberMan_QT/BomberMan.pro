@@ -9,8 +9,10 @@ CONFIG -= app_bundle
 
 SOURCES += \
         bomb.cpp \
+        brick.cpp \
         console.cpp \
         main.cpp \
+        monster.cpp \
         player.cpp \
         wall.cpp
 
@@ -21,6 +23,8 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 HEADERS += \
     bomb.h \
+    brick.h \
     console.h \
+    monster.h \
     player.h \
     wall.h
