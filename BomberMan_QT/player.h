@@ -34,7 +34,6 @@ public:
     void moveDown();
     void calculateMove();
     void putBomb();
-    void printHealth();
     void gameOver();
 };
 

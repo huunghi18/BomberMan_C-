@@ -20,7 +20,6 @@ public:
     Bomb();
     void createBomb();
     void kickBomb(int, int, Brick&, Monster&);
-    void changeArr(Brick &br, int x, int y);
     void setXY(int x, int y) {
         m_x = x;
         m_y = y;

@@ -6,9 +6,7 @@ Bomb::Bomb()
 // in điểm số phá tường + tiêu diệt quái
 void Bomb::printScore() {
     gotoXY(20,17);
-    cout << "SCORE: ";
-    gotoXY(28,17);
-    cout << score;
+    cout << "SCORE: \t" << score;
 }
 // Nổ bom
 void Bomb::kickBomb(int x, int y, Brick& br, Monster& m) {
